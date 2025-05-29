@@ -1,18 +1,18 @@
 <?php
-$bancoDados = ReservaMM;
-$host = localhost;
-$port = 3306;
+$bancoDados = "ReservaMM";
+$host = "localhost";
 $usuario = root;
-$Password = "";
+$Senha = "";
 
 function dbx_connecta($host, $usuario, $senha, $bancoDados) {
+	$conexao 	= 	@mysql_connect($host, $usuario, $senha, true);
 	
-	$conexao 	= 	@mysql_connect($host, $usuario, $senha, true) or die('Erro conexao ao Banco de dados ' . $bancoDados);
-	
+	if (!$conexao) {
+	die('Erro conexao ao Banco de dados ' . mysqli_connect_error());
+	}
+
 	return $conexao;
-
 }
-
 ?>
 
 
