@@ -1,17 +1,17 @@
 <?php
 $bancoDados = "ReservaMM";
 $host = "localhost";
-$usuario = root;
+$usuario = "root";
 $Senha = "";
 
 function dbx_connecta($host, $usuario, $senha, $bancoDados) {
-	$conexao 	= 	@mysql_connect($host, $usuario, $senha, true);
-	
-	if (!$conexao) {
-	die('Erro conexao ao Banco de dados ' . mysqli_connect_error());
-	}
+    $conexao = mysqli_connect($host, $usuario, $senha, $bancoDados);
 
-	return $conexao;
+    if (!$conexao) {
+        die("Erro ao conectar: " . mysqli_connect_error());
+    }
+
+    return $conexao;
 }
 ?>
 
