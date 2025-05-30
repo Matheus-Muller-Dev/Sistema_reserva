@@ -1,17 +1,15 @@
 <?php
-// C:xampp\php\php.exe index.php
+// C:\xampp\php\php.exe index.php
 
 include "Banco.php";
 
 $conexao = dbx_connecta("localhost", "root", "", "reservamm");
 
-$Nome_cliente = "";
+echo "Pousada Müller! Controle de hospedes e quartos! \n";
 
-echo "Seja bem vindo, Ao chalé do Müller ";
+$nomeCliente = readline("Como é o seu nome? \n");
 
-$Nome_cliente = readline("Como é o seu nome? ");
-
-$sql = "INSERT INTO clientes (nome) VALUES ('$Nome_cliente')";
+$sql = "INSERT INTO clientes (nome) VALUES ('$nomeCliente')";
 
 if (mysqli_query($conexao, $sql)) {
     echo "Cliente salvo com sucesso!";
