@@ -1,5 +1,5 @@
 <?php
-$bancoDados = "ReservaMM";
+$bancoDados = "reservamm";
 $host = "localhost";
 $usuario = "root";
 $Senha = "";
