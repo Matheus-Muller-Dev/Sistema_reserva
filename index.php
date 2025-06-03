@@ -4,6 +4,7 @@
 include "banco/Banco.php";
 include "funcoes/listarQuartoDisponveis.php";
 include "funcoes/listarDescricoesQuarto.php";
+include "funcoes/cadastrarUmClienteNovo.php";
 
 $conexao = dbx_connecta("localhost", "root", "", "reservamm");
 
@@ -20,6 +21,11 @@ if ($opcoesSelecionada == 1) {
     listarQuartosDisponiveis($conexao);
 } elseif ($opcoesSelecionada == 2) {
     listarDescricoesQuarto($conexao);
+} elseif ($opcoesSelecionada == 3) {
+    cadastrarUmClienteNovo($conexao);
+} elseif ($opcoesSelecionada == 4) {
+    echo "Teste 4";
+    // cadastrarUmChaleNovo($conexao);
 } else {
     echo "Opção invalida, digite apenas números da seleção. \n";
 } 
