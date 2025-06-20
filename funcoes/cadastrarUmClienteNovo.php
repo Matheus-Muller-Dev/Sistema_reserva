@@ -7,7 +7,15 @@ function cadastrarUmClienteNovo($conexao){
     echo "Como é o número de telefone: ";
     $numero = trim(fgets(STDIN));
 
-    $sql = "INSERT INTO clientes(nome, telefone) VALUES (?, ?)";
+    echo "Quantos anos você tem: ";
+    $idade = trim(fgets(STDIN));
+
+    $sql = "INSERT INTO clientes
+            (nome, 
+             telefone, 
+             idade) 
+             VALUES (?, ?, ?)";
+
     $statement = $conexao->prepare($sql);
 
     if (!$statement) {
@@ -15,7 +23,7 @@ function cadastrarUmClienteNovo($conexao){
         return;
     } 
 
-    $statement->bind_param("ss", $nome, $telefone);
+    $statement->bind_param("sss", $nome, $telefone, $idade);
 
     if ($statement->execute()) {
         echo "Novo cliente foi cadastrado com sucesso";
@@ -25,3 +33,6 @@ function cadastrarUmClienteNovo($conexao){
     $statement->close();
 }
 ?>
+
+
+
