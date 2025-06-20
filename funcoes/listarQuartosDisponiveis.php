@@ -5,7 +5,10 @@ function listarQuartosDisponiveis($conexao) {
         $sqlDisponivel = "SELECT * FROM teste_quartos WHERE disponivel = 1";
         $resultado = mysqli_query($conexao, $sqlDisponivel);
 
+        $temDisponivel = false; // Flag para saber se tem quartos disponivel
+
   if ($resultado && mysqli_num_rows($resultado) > 0) {
+      $temDisponivel = true;
       while ($linha = mysqli_fetch_assoc($resultado)) {
       echo "Numero: " . $linha['id'] . " | Suíte: " . $linha['suite'] . " | Valor: R$ " . $linha['valor'] . "\n";
         }
@@ -18,7 +21,9 @@ function listarQuartosDisponiveis($conexao) {
         $sqlReservados = "SELECT * FROM teste_quartos WHERE disponivel = 2";
         $resultadoReservado = mysqli_query($conexao, $sqlReservados);
 
-  if ($resultadoReservado && mysqli_num_rows($resultadoReservado) > 0){
+        $temReservado = false;
+        $quantidadeReservado = mysqli_num_rows($resultadoReservado);
+  if ($resultadoReservado && $quantidadeReservado > 0){
     while ($linha = mysqli_fetch_assoc($resultadoReservado)) {
       echo "Numero: " . $linha['id'] . " | Suíte: " . $linha['suite'] . " | Valor: R$ " . $linha['valor'] . "\n";
     }
@@ -36,6 +41,10 @@ function listarQuartosDisponiveis($conexao) {
   // Realizar tratamento para analisar, se a opção informada há algum valor, se não, não mostrar!
 
   if ($opcaoSelecionada == 1) {
+      if (!$temDisponivel) {
+          echo "Não há quartos para reservar, libere primeiro. \n";
+          return;       
+      }
 
         echo "Qual Suite você deseja agendar? ";
         $agendarSuite = trim(fgets(STDIN)); // valor de entrada de usuario
@@ -66,6 +75,12 @@ function listarQuartosDisponiveis($conexao) {
       }
 
   } elseif ($opcaoSelecionada == 2) {
+      
+      if (!$temReservado) {
+          echo "Não tem quartos para liberar, agende primeiro";
+          return;
+      }
+
       echo "Qual suite você deseja liberar: ";
       $liberarSuite = trim(fgets(STDIN));
       $sqlNumeroQuarto = "SELECT * FROM teste_quartos WHERE id = $liberarSuite";
