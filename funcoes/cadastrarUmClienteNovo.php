@@ -1,36 +1,23 @@
 <?php
 
 function cadastrarUmClienteNovo($conexao){
-    echo "Como é o nome do cliente: ";
+    echo "Como é o nome do cliente: \n";
+    echo "[M:M]: ";
     $nome = trim(fgets(STDIN));
 
-    echo "Como é o número de telefone: ";
+    echo "Como é o número de telefone: \n";
+    echo "[M:M]: ";
     $numero = trim(fgets(STDIN));
 
-    echo "Quantos anos você tem: ";
+    echo "Quantos anos você tem: \n";
+    echo "[M:M]: ";
     $idade = trim(fgets(STDIN));
 
-    $sql = "INSERT INTO clientes
-            (nome, 
-             telefone, 
-             idade) 
-             VALUES (?, ?, ?)";
+    $sql = "INSERT INTO clientes (NOME, NUMERO_TELEFONE, IDADE) VALUES ('$nome', '$numero', '$idade')";
+    mysqli_query($conexao, $sql);
 
-    $statement = $conexao->prepare($sql);
+    
 
-    if (!$statement) {
-        echo "Erro ao preparar statement: " . $conexao->error .  PHP_EOL;
-        return;
-    } 
-
-    $statement->bind_param("sss", $nome, $telefone, $idade);
-
-    if ($statement->execute()) {
-        echo "Novo cliente foi cadastrado com sucesso";
-    } else {
-        echo "Não foi possivel cadastrar novo cliente";
-    }
-    $statement->close();
 }
 ?>
 

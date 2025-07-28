@@ -1,0 +1,5 @@
+CREATE TABLE teste_quartos (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    NOME VARCHAR(150),
+     )
+

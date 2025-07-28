@@ -1,4 +1,5 @@
 <?php
+
 function listarDescricoesQuarto($conexao) {
     echo "Descricoes dos Chalés: \n";
     $sql = "SELECT * FROM teste_quartos";
@@ -6,10 +7,11 @@ function listarDescricoesQuarto($conexao) {
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         while ($linha = mysqli_fetch_assoc($resultado)) {
-            echo "Chalé: " . $linha['id'] . " | Descrição: " . $linha['descricao'] . "\n";
+            echo "| Chalé: " . $linha['ID'] . " | Nome do quarto: " . $linha['SUITE'] . " | Descrição: " . $linha['DESCRICAO'] . " | \n";
         }
     } else {
         echo "Não foi possivel mostrar descrições dos chalés";
     }
 }
+
 ?>
