@@ -1,7 +1,7 @@
 <?php 
 
 function listarQuartosDisponiveis($conexao) { 
-
+  limparTela();
   echo "Quartos disponiveis para reservar: \n";
         $sqlDisponivel = "SELECT * FROM teste_quartos WHERE DISPONIVEL = 1";
         $resultado = mysqli_query($conexao, $sqlDisponivel);

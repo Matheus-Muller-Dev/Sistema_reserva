@@ -7,7 +7,9 @@ include 'funcoes/listarDescricoesQuarto.php';
 include 'funcoes/cadastrarUmChaleNovo.php';
 include 'funcoes/cadastrarUmClienteNovo.php';
 include 'funcoes/gerenciarInformacoes.php';
-include  'funcoes/limparTela.php';
+include 'funcoes/quartoManutencao.php';
+include 'funcoes/limparTela.php';
+include 'funcoes/voltarAoMenuPrincipal.php';
 
 $conexao = dbx_connecta($host, $usuario, $Senha, $bancoDados);
 index($conexao);

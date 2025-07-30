@@ -1,6 +1,7 @@
 <?php
 
 function cadastrarUmChaleNovo($conexao) {
+    limparTela(); 
     echo "Como é o nome da suite nova: \n";
     echo "[M:M]: ";
     $suite = trim(fgets(STDIN));

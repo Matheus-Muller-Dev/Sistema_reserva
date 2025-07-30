@@ -1,6 +1,7 @@
 <?php
 
 function cadastrarUmClienteNovo($conexao){
+    limparTela();
     echo "Como é o nome do cliente: \n";
     echo "[M:M]: ";
     $nome = trim(fgets(STDIN));

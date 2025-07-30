@@ -1,6 +1,7 @@
 <?php
 
 function listarDescricoesQuarto($conexao) {
+    limparTela();
     echo "Descricoes dos Chalés: \n";
     $sql = "SELECT * FROM teste_quartos";
     $resultado = mysqli_query($conexao, $sql);
@@ -12,6 +13,7 @@ function listarDescricoesQuarto($conexao) {
     } else {
         echo "Não foi possivel mostrar descrições dos chalés";
     }
+    voltarAoMenuPrincipal();
 }
 
 ?>

@@ -1,7 +1,7 @@
 <?php 
 
 function quartoManutencao($conexao) {
-
+    limparTela();
     echo "\n";
     echo "Quartos em manutenção: \n";
         $sqlManutencao = "SELECT * FROM teste_quartos WHERE DISPONIVEL = 3";
@@ -11,14 +11,13 @@ function quartoManutencao($conexao) {
 
         if ($resultadoManutencao && mysqli_num_rows($resultadoManutencao) > 0) {
             $temManutencao = true;
-            while ($linha = mysqli_fetch_assoc($resultadoReservado)) {
+            while ($linha = mysqli_fetch_assoc($resultadoManutencao)) {
                 echo "Numero: " . $linha['ID'] . " | Suíte: " . $linha['SUITE'] . " | Valor: R$ " . $linha['VALOR'] . "\n";
             }
         } else {
                 echo "Nenhum quarto está em manutenção. \n";
         }
     
-
 
     echo "QUAL OPÇÃO VOCÊ DESEJA \n";
       
@@ -53,3 +52,5 @@ function quartoManutencao($conexao) {
         $tratamento->close();
       } 
 }
+
+
