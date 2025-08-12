@@ -4,6 +4,7 @@
 include 'banco/Banco.php';
 include 'funcoes/listarQuartosDisponiveis.php';
 include 'funcoes/listarDescricoesQuarto.php';
+include 'funcoes/listarClientesCadastrados.php';
 include 'funcoes/cadastrarUmChaleNovo.php';
 include 'funcoes/cadastrarUmClienteNovo.php';
 include 'funcoes/gerenciarInformacoes.php';

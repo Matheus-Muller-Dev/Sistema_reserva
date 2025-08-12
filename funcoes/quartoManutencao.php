@@ -4,7 +4,7 @@ function quartoManutencao($conexao) {
     limparTela();
     echo "\n";
     echo "Quartos em manutenção: \n";
-        $sqlManutencao = "SELECT * FROM teste_quartos WHERE DISPONIVEL = 3";
+        $sqlManutencao = "SELECT * FROM quartos WHERE DISPONIVEL = 3";
         $resultadoManutencao = mysqli_query($conexao, $sqlManutencao);
 
         $temManutencao = false;
@@ -30,12 +30,12 @@ function quartoManutencao($conexao) {
     echo "Qual quarto você deseja selecionar: \n";
     echo "[M:M]: ";
     $quartoSelecionado = trim(fgets(STDIN));
-    $sqlFiltro = "SELECT * FROM teste_quartos WHERE ID = $quartoSelecionado";
+    $sqlFiltro = "SELECT * FROM quartos WHERE ID = $quartoSelecionado";
 
     $resultadoSql = mysqli_query($conexao, $sqlFiltro);
 
     if ( $rpManuntecao == 1 ) {
-        $sqlCondicao = "UPDATE teste_quartos SET DISPONIVEL = 3 WHERE teste_quartos . ID = $quartoSelecionado";
+        $sqlCondicao = "UPDATE teste_quartos SET DISPONIVEL = 3 WHERE quartos . ID = $quartoSelecionado";
       
     $tratamento = $conexao->prepare($sqlCondicao);
 

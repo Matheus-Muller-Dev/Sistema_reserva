@@ -3,7 +3,7 @@
 function listarDescricoesQuarto($conexao) {
     limparTela();
     echo "Descricoes dos Chalés: \n";
-    $sql = "SELECT * FROM teste_quartos";
+    $sql = "SELECT * FROM quartos";
     $resultado = mysqli_query($conexao, $sql);
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {

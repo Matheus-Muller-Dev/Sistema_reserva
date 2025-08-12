@@ -14,7 +14,7 @@ function cadastrarUmChaleNovo($conexao) {
     echo "[M:M]: ";
     $descricao = trim(fgets(STDIN));
 
-    $sql = "INSERT INTO teste_quartos(SUITE, VALOR, DESCRICAO) VALUES ('$suite', '$valor', '$descricao')";
+    $sql = "INSERT INTO quartos(SUITE, VALOR, DESCRICAO) VALUES ('$suite', '$valor', '$descricao')";
     mysqli_query($conexao, $sql);
 
     

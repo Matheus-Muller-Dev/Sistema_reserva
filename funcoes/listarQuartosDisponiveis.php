@@ -1,9 +1,26 @@
 <?php 
 
 function listarQuartosDisponiveis($conexao) { 
+  
   limparTela();
+  echo "Suites que estão em Manutenção: \n";
+        $sqlManutencao = "SELECT ID, SUITE FROM quartos WHERE DISPONIVEL = 3";
+        $resultadoManutencao = mysqli_query($conexao, $sqlManutencao);
+
+         $temManutencao = false;
+
+        if ($resultadoManutencao && mysqli_num_rows($resultadoManutencao) > 0) {
+            $temManutencao = true;
+            while ($linha = mysqli_fetch_assoc($resultadoManutencao)) {
+
+                echo " | Suite: " . $linha['ID'] .  " | \n";
+
+            }
+        } 
+
+  echo "\n";
   echo "Quartos disponiveis para reservar: \n";
-        $sqlDisponivel = "SELECT * FROM teste_quartos WHERE DISPONIVEL = 1";
+        $sqlDisponivel = "SELECT * FROM quartos WHERE DISPONIVEL = 1";
         $resultado = mysqli_query($conexao, $sqlDisponivel);
 
         $temDisponivel = false; // Flag para saber se tem quartos disponivel
@@ -11,7 +28,7 @@ function listarQuartosDisponiveis($conexao) {
   if ($resultado && mysqli_num_rows($resultado) > 0) {
       $temDisponivel = true;
       while ($linha = mysqli_fetch_assoc($resultado)) {
-      echo "Numero: " . $linha['ID'] . " | Suíte: " . $linha['SUITE'] . " | Valor: R$ " . $linha['VALOR'] . "\n";
+      echo "| Numero: " . $linha['ID'] . " | Suíte: " . $linha['SUITE'] . " | Valor: R$ " . $linha['VALOR'] . " | \n";
         }
       } else {
         echo "Nenhum quarto disponivel no momento. \n";
@@ -19,7 +36,7 @@ function listarQuartosDisponiveis($conexao) {
 
   echo "\n";
   echo "Quartos reservados: \n";
-        $sqlReservados = "SELECT * FROM teste_quartos WHERE DISPONIVEL = 2";
+        $sqlReservados = "SELECT * FROM quartos WHERE DISPONIVEL = 2";
         $resultadoReservado = mysqli_query($conexao, $sqlReservados);
 
         $temReservado = false;
@@ -50,14 +67,14 @@ function listarQuartosDisponiveis($conexao) {
         echo "Qual Suite você deseja agendar? \n";
         echo "[M:M]: ";
         $agendarSuite = trim(fgets(STDIN)); // valor de entrada de usuario
-        $sqlNumeroQuarto = "SELECT * FROM teste_quartos WHERE ID = $agendarSuite;"; // slq codição para verificar se estar disponivel
+        $sqlNumeroQuarto = "SELECT * FROM quartos WHERE ID = $agendarSuite;"; // slq codição para verificar se estar disponivel
     
         $resultadoCondicao = mysqli_query($conexao, $sqlNumeroQuarto);
         $linhaId = mysqli_fetch_assoc($resultadoCondicao);
 
 
         if ($agendarSuite == $linhaId['ID']) {
-        $sqlCondicao = "UPDATE teste_quartos SET DISPONIVEL = 2 WHERE teste_quartos . ID = $agendarSuite";
+        $sqlCondicao = "UPDATE quartos SET DISPONIVEL = 2 WHERE quartos . ID = $agendarSuite";
        
         $tratamento = $conexao->prepare($sqlCondicao);
 
@@ -86,13 +103,13 @@ function listarQuartosDisponiveis($conexao) {
       echo "Qual suite você deseja liberar: \n";
       echo "[M:M]: ";
       $liberarSuite = trim(fgets(STDIN));
-      $sqlNumeroQuarto = "SELECT * FROM teste_quartos WHERE ID = $liberarSuite";
+      $sqlNumeroQuarto = "SELECT * FROM quartos WHERE ID = $liberarSuite";
       
       $resultadoCondicao = mysqli_query($conexao, $sqlNumeroQuarto);
       $linhaId = mysqli_fetch_assoc($resultadoCondicao);
 
       if ($liberarSuite == $linhaId['ID']) {
-        $sqlCondicao = "UPDATE teste_quartos SET DISPONIVEL = 1 WHERE teste_quartos . ID = $liberarSuite";
+        $sqlCondicao = "UPDATE quartos SET DISPONIVEL = 1 WHERE quartos . ID = $liberarSuite";
 
         $tratamento = $conexao->prepare($sqlCondicao);
 
